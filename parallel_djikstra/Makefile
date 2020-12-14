@@ -2,22 +2,10 @@
 CC = gcc
 
 # define any compile-time flags
-CFLAGS = -O -Wall -Werror -Wfatal-errors -std=c99
-
-# define any directories containing header files other than /usr/include
-INCLUDES = -I/Users/philiposullivan/OneDrive/Documents/UChicago/CS_Masters/Fall_Quarter/Advanced_Programming/Homework/homework-6-PHIPWNO/
-
-# define library paths in addition to /usr/lib
-LFLAGS = -L/Users/philiposullivan/OneDrive/Documents/UChicago/CS_Masters/Fall_Quarter/Advanced_Programming/Homework/homework-6-PHIPWNO/
-
-# define any libraries to link into executable:
-LIBS = -lm
-
-# defines a location for other files
-LOCATION1 = /Users/philiposullivan/OneDrive/Documents/UChicago/CS_Masters/Fall_Quarter/Advanced_Programming/Homework/homework-6-PHIPWNO/
+CFLAGS = -O -Wall -Wfatal-errors -std=c99
 
 # define the C source files
-SRCS = alt_heap.c alt_parallel.c alt_main.c $(LOCATION1)heap.c $(LOCATION1)graph.c
+SRCS = heap.c alt_main.c graph.c alt_dijkstra.c #alt_parallel.c
 
 # define the C object files 
 OBJS = $(SRCS:.c=.o)
@@ -39,16 +27,16 @@ all: $(MAIN) $(TEST)
 	@echo  Simple compiler named Test has been compiled
 
 $(MAIN): $(OBJS) 
-	$(CC) -Xpreprocessor -fopenmp $(CFLAGS) $(INCLUDES) -o $(MAIN) $(OBJS) $(LFLAGS) $(LIBS) -lomp
+	$(CC) $(CFLAGS) -o $(MAIN) $(OBJS)
 
-$(TEST): $(OBJS2) 
-	$(CC) -Xpreprocessor -fopenmp $(CFLAGS) $(INCLUDES) -o $(TEST) $(OBJS2) $(LFLAGS) $(LIBS) -lomp
+# $(TEST): $(OBJS2) 
+#	$(CC) -Xpreprocessor -fopenmp $(CFLAGS) $(INCLUDES) -o $(TEST) $(OBJS2) $(LFLAGS) $(LIBS) -lomp
 
 .c.o:
 	$(CC) $(CFLAGS) $(INCLUDES) -c $<  -o $@
 
 clean:
-	$(RM) *.o *~ $(MAIN)
+	$(RM) *.o
 
-depend: $(SRCS)
-	makedepend $(INCLUDES) $^
+# depend: $(SRCS)
+#	makedepend $(INCLUDES) $^

@@ -14,7 +14,7 @@ int main(int argc, char **argv){
 	
 	if(argc > 1){
 		int temp = atoi(argv[1]);
-		if(temp >= 4)
+		if(temp >= -4)
 			file_index = temp;
 	}
 	
@@ -24,11 +24,12 @@ int main(int argc, char **argv){
 	if(order < nPaths)
 		nPaths = order;
 
-	printf("Running on %s\n", inputs[file_index]);
-	Path *result = parallel_min_dijkstra_alt(G, 0, nPaths);
+	printf("Running on %s with num paths %d\n", inputs[file_index], nPaths);
+
+	Path result = parallel_min_dijkstra_alt(G, 0, nPaths);
 	for (int i = 0; i < nPaths; i++)
 	{
-		printf("length %d\n", result[i]->key);
+		print_path(&result[i]);
 	}
 	
 

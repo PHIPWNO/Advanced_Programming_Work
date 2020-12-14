@@ -25,6 +25,8 @@ typedef struct graph_{
 } *Graph;
 
 
+void print_path(Path a_path);
+
 /* loads graph from file assuming # lines are ignored
 and first non-comment line has order and size followed by 
 size lines of vertex, vertex, edge weight */

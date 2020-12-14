@@ -5,6 +5,12 @@
 
 #define LINE_SIZE 200
 
+void print_path(Path a_path){
+	printf("Length %d, Start:%d, End:%d, Index:%d\n",
+	a_path->key, a_path->start, a_path->end, a_path->index);
+	return;
+}
+
 /* frees edgenode and all those linked to it */
 void free_edgenode_head(Edgenode edge, int degree){
 	Edgenode curr = edge, next;

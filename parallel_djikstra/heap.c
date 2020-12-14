@@ -27,11 +27,9 @@ void print_heap(Heap H){
 		H->cur_size, H->max_size);
 	for (int i = 1; i < H->cur_size+1; ++i)
 	{
-		printf("Key %d, Index %d, start:%d, end:%d\n",
-		H->paths[i]->key, H->paths[i]->index, H->paths[i]->start,
-		H->paths[i]->end);
+		print_path(H->paths[i]);
 	}
-	printf("Done printing the heap\n");
+	printf("Done printing the heap\n\n");
 	return;
 }
 
@@ -125,7 +123,10 @@ void decrease_key(Heap H, int index, int change){
 	H->paths[index]->key -= change;
 	Path temp;
 	while(index > 1){
+		//print_path(H->paths[index]);
+		//print_path(H->paths[index/2]);
 		if(H->paths[index]->key < H->paths[index/2]->key){
+			//printf("first is less than second!\n");
 			temp = H->paths[index]; 
     		H->paths[index] = H->paths[index/2]; 
     		H->paths[index/2] = temp;
@@ -135,6 +136,7 @@ void decrease_key(Heap H, int index, int change){
     	}
 		index /= 2;
 	}
+	//printf("index is now %d\n", index);
 	return;
 }
 
@@ -145,14 +147,14 @@ Returns 1 if insertion made and 0 if no insertion
 because proposed insert was too small 
 If heap is full it discards the element taken off*/
 int blind_insert(Heap H, Path new_path){
-	//printf("blind insert\n");
+	//printf("blind insert path with key %d\n", new_path->key);
 	//printf("params are %d, %d, and %p\n", new_key_val, new_v, key_ptr);
 	if(new_path->key <= H->paths[1]->key){
 		/* if the element you are trying to insert is smaller than
 		the front of the heap then no insertion made */
 		return 0;
 	}
-	if(H->cur_size-1 >= H->max_size){
+	if(H->cur_size >= H->max_size){
 		/* For when stack is full */
 		get_heap_front(H);
 	}
