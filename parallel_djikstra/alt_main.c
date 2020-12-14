@@ -26,7 +26,10 @@ int main(int argc, char **argv){
 
 	printf("Running on %s with num paths %d\n", inputs[file_index], nPaths);
 
-	Path result = parallel_min_dijkstra_alt(G, 0, nPaths);
+	//Path top_paths = malloc(sizeof(struct path_) * nPaths);
+	struct path_ top_paths[nPaths];
+
+	Path result = parallel_min_dijkstra_alt(G, 0, nPaths, top_paths);
 	for (int i = 0; i < nPaths; i++)
 	{
 		print_path(&result[i]);

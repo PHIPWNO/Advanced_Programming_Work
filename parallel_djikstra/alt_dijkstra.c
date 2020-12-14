@@ -9,12 +9,12 @@
 
 
 /* returns a sorted list of paths */
-Path parallel_min_dijkstra_alt(Graph G, int start, int nTopPaths){
+Path parallel_min_dijkstra_alt(Graph G, int start, int nTopPaths, Path top_paths){
 	int u, v = start, weight, alt;
 	Edgenode p;
 	struct path_ paths_arr[G->nvertices];
 	Path new_path = &(struct path_) {0, -35, -36, -IINFINITY}, path_array[G->nvertices]; 
-	Path top_paths = malloc(sizeof(struct path_) * nTopPaths);
+	
 
 	int distance[G->nvertices];
 
