@@ -1,5 +1,6 @@
 #include<stdlib.h>
 #include<stdio.h>
+#include<omp.h>
 #include"alt_parallel.h"
 #include"alt_dijkstra.h"
 #include"graph.h"
@@ -30,21 +31,18 @@ int main(int argc, char **argv){
 	//Path top_paths = malloc(sizeof(struct path_) * nPaths);
 	struct path_ top_paths[10];
 
-	int sizeDD;
+	int sizeDD, nThreads =  omp_get_max_threads();
 
-	for (int i = 0; i < order; i++){
-	printf("haha i=%d\n", i);
-	//top_paths = parallel_min_dijkstra_alt(G, 1, nPaths, top_paths);
-	sizeDD = parallel_min_dijkstra_alt(G, i, nPaths, top_paths);
-	//printf("hehe i=%d\n", 1);
-	/*
-	for (int j = 0; j < sizeDD; j++)
+/* attempted parallel block */
+#pragma omp parallel for default(none) private(top_paths) shared(G, n_paths) num_threads(nThreads)
+{
+#pragma omp for schedule(dynamic)
+	for (int i = 0; i < order; ++i)
 	{
-		print_path(&top_paths[j]);
+		printf("calling dijkstra on vertex %d\n", i);
+		sizeDD = parallel_min_dijkstra_alt(G, i, nPaths, top_paths);
 	}
-	*/
-
-	}
+}
 
 	
 

@@ -27,7 +27,7 @@ all: $(MAIN) $(TEST)
 	@echo  Simple compiler named Test has been compiled
 
 $(MAIN): $(OBJS) 
-	$(CC) $(CFLAGS) -o $(MAIN) $(OBJS)
+	$(CC) -Xpreprocessor -fopenmp $(CFLAGS) -o $(MAIN) $(OBJS) -lomp
 
 # $(TEST): $(OBJS2) 
 #	$(CC) -Xpreprocessor -fopenmp $(CFLAGS) $(INCLUDES) -o $(TEST) $(OBJS2) $(LFLAGS) $(LIBS) -lomp
