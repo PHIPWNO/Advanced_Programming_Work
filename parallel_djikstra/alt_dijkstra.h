@@ -5,7 +5,7 @@
 
 #include"graph.h"
 
-Path parallel_min_dijkstra_alt(Graph G, int start, int nTopPaths, Path top_paths);
+int parallel_min_dijkstra_alt(Graph G, int start, int nTopPaths, Path top_paths);
 
 
 #endif /* ALT_DIJKSTRA_H_ */

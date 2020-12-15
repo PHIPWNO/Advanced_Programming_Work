@@ -4,13 +4,12 @@
 #include<limits.h>
 #include"graph.h"
 #include"heap.h"
-#include"alt_heap.h"
 #include"alt_dijkstra.h"
 
 
 /* returns a sorted list of paths */
-Path parallel_min_dijkstra_alt(Graph G, int start, int nTopPaths, Path top_paths){
-	int u, v = start, weight, alt;
+int parallel_min_dijkstra_alt(Graph G, int start, int nTopPaths, Path top_paths){
+	int u, v = start, weight, alt, THeap_size;
 	Edgenode p;
 	struct path_ paths_arr[G->nvertices];
 	Path new_path = &(struct path_) {0, -35, -36, -IINFINITY}, path_array[G->nvertices]; 
@@ -45,11 +44,12 @@ Path parallel_min_dijkstra_alt(Graph G, int start, int nTopPaths, Path top_paths
 	//print_heap(Q);
 
 	while (Q->cur_size > 0){
-		
+		//printf("starting v is %d \n", v);
     	/* get spot in queue */
     	new_path = get_heap_front(Q);
 		v = new_path->start;
     	p = G->edges[v];
+		//printf("new v is %d \n", v);
 		//printf("got new thing from queue with vertex num %d and key %d \n",
 		//new_path->start, new_path->key);
     /* checks v's neighbors */
@@ -83,11 +83,21 @@ Path parallel_min_dijkstra_alt(Graph G, int start, int nTopPaths, Path top_paths
 			//printf("blind inserted for v=%d\n", v);
 			//print_heap(Q);
     	}
+	//printf("done for %d \n", v);
   }
+  //printf("out the loop\n");
 
-	//printf("oy bruv am out!\n");
+	while(top_paths_H->paths[1]->key < 1){
+		new_path = get_heap_front(top_paths_H);
+		if(!top_paths_H->cur_size){
+			break;
+		}
+	}
 	//print_heap(top_paths_H);
-	for (int i = 0; i < nTopPaths; i++)
+	THeap_size = top_paths_H->cur_size;
+
+	
+	for (int i = 0; i < THeap_size; i++)
 	{
 		//printf("huh? %d\n", i);
 		/* makes top paths a list sorted biggest to smallest key */
@@ -96,5 +106,5 @@ Path parallel_min_dijkstra_alt(Graph G, int start, int nTopPaths, Path top_paths
 		new_path->start, new_path->end, new_path->key};
 	}
 	
-	return top_paths;
+	return THeap_size;
 }
