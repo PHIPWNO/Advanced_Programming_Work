@@ -1,10 +1,10 @@
 extern "C" {
 #include "bitmap.h"
 }
-#include"helper_cuda.h"
-#include<math.h>
-#include<stdlib.h>
-#include<stdio.h>
+#include "helper_cuda.h"
+#include <math.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 
 #define OUTFILE "output.bmp"
