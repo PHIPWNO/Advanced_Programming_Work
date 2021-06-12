@@ -1,5 +1,6 @@
 #Cmake file for generating a sphere using ray tracing in cuda
-
+#link math library
+link_libraries(m)
 # Ensures it only runs if there's a cuda compiler
 if (CMAKE_CUDA_COMPILER)
 	#Just shows resource info upon compilation
