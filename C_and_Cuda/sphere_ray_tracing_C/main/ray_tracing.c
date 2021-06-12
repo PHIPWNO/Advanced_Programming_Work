@@ -9,10 +9,10 @@
 
 #define FILENAME "sphere.bmp"
 
-
 #define WMAX 10
 #define THE_R 4.4
 
+/* Generates and writes bitmap of nxn sphere */
 double serial_sphere(int n, Vec L, Vec C){
     struct timespec start, end;
     float W_MAX = (float) WMAX, R = (float) THE_R; 
@@ -48,7 +48,6 @@ double serial_sphere(int n, Vec L, Vec C){
                 if(s_dot_n > 0){
                     s_dot_n *= 255;
                     b = (int) rint(s_dot_n);
-                    //printf("float is %f and int is %d\n", s_dot_n, b);
                 }
                 else{
                     b = 0;
