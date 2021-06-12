@@ -5,6 +5,7 @@ if (CMAKE_CUDA_COMPILER)
 	#creates executable
 	add_executable(CudaRayTrace main/ray_trace_gpu.cu)
 	set_target_properties(CudaRayTrace PROPERTIES CUDA_SEPARABLE_COMPILATION ON)
+	target_include_directories(CudaRayTrace PUBLIC ${CMAKE_CURRENT_LIST_DIR})
 	#lists the libraries to link to compiling this executable
 	target_link_libraries(CudaRayTrace PUBLIC helper_cuda bitmap)
 	#link math library
