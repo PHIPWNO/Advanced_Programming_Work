@@ -9,6 +9,7 @@ set(CMAKE_C_STANDARD 99)
 # ======================================================================
 
 add_subdirectory(sphere_ray_tracing_C)
+add_subdirectory(sphere_ray_tracing_cuda)
 
 
 

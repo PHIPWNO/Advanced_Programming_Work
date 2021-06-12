@@ -12,14 +12,13 @@ target_link_libraries(vector_test PUBLIC vector)
 
 
 #Executable for generating the sphere with ray tracing
-add_executable(ray_tracer main/ray_tracing.c)
-target_link_libraries(ray_tracer PUBLIC bitmap)
-target_link_libraries(ray_tracer PUBLIC vector)
+add_executable(CRayTrace main/ray_tracing.c)
+target_link_libraries(CRayTrace PUBLIC bitmap vector)
 
 #link to ray tracer 
 find_package(OpenMP)
 if (OPENMP_FOUND)
-    target_link_libraries(ray_tracer PRIVATE OpenMP::OpenMP_C)
+    target_link_libraries(CRayTrace PRIVATE OpenMP::OpenMP_C)
 
 endif()
 
