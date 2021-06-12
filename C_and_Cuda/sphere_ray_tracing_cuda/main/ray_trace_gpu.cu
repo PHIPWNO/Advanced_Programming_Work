@@ -1,10 +1,11 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <math.h>
 extern "C" {
 #include "bitmap.h"
 }
 #include "helper_cuda.h"
-#include <math.h>
-#include <stdlib.h>
-#include <stdio.h>
+
 
 
 #define OUTFILE "output.bmp"
@@ -113,16 +114,15 @@ int main(int argc, char* argv[])
 	cudaEventSynchronize(tock);
 
 	cudaError_t errSync  = cudaGetLastError(); //gets last error off stack
-cudaError_t errAsync = cudaDeviceSynchronize(); //This is because of asynchornicity off kernel 
+	cudaError_t errAsync = cudaDeviceSynchronize(); //This is because of asynchornicity off kernel 
 
-if (errSync != cudaSuccess){
-  printf("Sync kernel error: %s\n", cudaGetErrorString(errSync));
-  return -1;
-}
-if (errAsync != cudaSuccess){
-  printf("Async kernel error: %s\n", cudaGetErrorString(errAsync));
-}
-
+	if (errSync != cudaSuccess){
+		printf("Sync kernel error: %s\n", cudaGetErrorString(errSync));
+		return -1;
+	}
+	if (errAsync != cudaSuccess){
+		printf("Async kernel error: %s\n", cudaGetErrorString(errAsync));
+	}
 
 	float time;
 	cudaEventElapsedTime(&time, tick, tock);
@@ -137,6 +137,5 @@ if (errAsync != cudaSuccess){
 
 	free(img);
 	checkCudaErrors(cudaFree(d_img));
-	
 	
 }
