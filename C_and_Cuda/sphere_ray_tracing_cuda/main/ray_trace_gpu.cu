@@ -7,7 +7,6 @@ extern "C" {
 #include "helper_cuda.h"
 
 
-
 #define OUTFILE "output.bmp"
 
 __global__ void bw_kernel(RgbTriple* img, int n, int x_stride, int y_stride)
