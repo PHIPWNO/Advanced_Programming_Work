@@ -28,8 +28,6 @@ endif ()
 
 
 
-
-
 # ======================================================================
 # Common Libraries
 # ======================================================================
@@ -38,3 +36,14 @@ endif ()
 # Credit: Ron Rahaman
 add_library(bitmap helper_libraries/bitmap/bitmap.c)
 target_include_directories(bitmap PUBLIC helper_libraries/bitmap/)
+
+
+# CUDA helper functions
+if (CMAKE_CUDA_COMPILER)
+    #interface because the library is all h files
+    add_library(helper_cuda INTERFACE)
+    target_include_directories(helper_cuda INTERFACE helper_cuda/)
+    #links the bitmap library to it
+    set_target_properties(bitmap PROPERTIES CUDA_SEPARABLE_COMPILATION ON)
+    
+endif ()

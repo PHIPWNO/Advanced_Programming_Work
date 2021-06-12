@@ -11,7 +11,7 @@ add_executable(vector_test main/vector_test.c)
 target_link_libraries(vector_test PUBLIC vector)
 
 
-#Executable for generating teh sphere with ray tracing
+#Executable for generating the sphere with ray tracing
 add_executable(ray_tracer main/ray_tracing.c)
 target_link_libraries(ray_tracer PUBLIC bitmap)
 target_link_libraries(ray_tracer PUBLIC vector)

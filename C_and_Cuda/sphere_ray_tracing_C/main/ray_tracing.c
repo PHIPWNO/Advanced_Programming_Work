@@ -7,7 +7,7 @@
 #include"vectors.h"
 #include"bitmap.h"
 
-#define FILENAME "sphere.bmp"
+#define FILENAME "sphere_C.bmp"
 
 #define WMAX 10
 #define THE_R 4.4
