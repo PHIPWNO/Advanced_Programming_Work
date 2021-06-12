@@ -4,14 +4,6 @@ project(C_and_Cuda_Code C)
 set(CMAKE_C_STANDARD 99)
 
 
-# ======================================================================
-# Subdirectories
-# ======================================================================
-
-add_subdirectory(sphere_ray_tracing_C)
-add_subdirectory(sphere_ray_tracing_cuda)
-
-
 
 # ======================================================================
 # Find OpenMP and CUDA
@@ -48,3 +40,12 @@ if (CMAKE_CUDA_COMPILER)
     set_target_properties(bitmap PROPERTIES CUDA_SEPARABLE_COMPILATION ON)
     
 endif ()
+
+
+# ======================================================================
+# Subdirectories
+# ======================================================================
+
+add_subdirectory(sphere_ray_tracing_C)
+add_subdirectory(sphere_ray_tracing_cuda)
+
